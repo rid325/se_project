@@ -1,16 +1,24 @@
 # CareerPilot prototype
 
-This is a self-contained static prototype for the CareerPilot placement-preparation platform described in the supplied UML design document and Software Engineering Lab write-up.
+This is a frontend/backend prototype for the CareerPilot placement-preparation platform described in the supplied UML design document and Software Engineering Lab write-up.
+
+## Folder structure
+
+- `frontend/` — the browser UI, styles, interactive prototype logic, and uploadable mock resumes.
+- `backend/` — a small Node.js fake API that serves the frontend and returns placeholder profile, resume-analysis, and chatbot responses.
+- `.github/workflows/validate.yml` — syntax validation for pushes and pull requests.
 
 ## Run locally
 
-From this folder, serve the files with any static HTTP server, for example:
+From this folder, start the fake backend:
 
 ```bash
-python3 -m http.server 4173
+node backend/server.js
 ```
 
 Then open `http://localhost:4173`.
+
+The frontend still falls back to its local mock data if opened directly without the backend.
 
 ## Included prototype flows
 

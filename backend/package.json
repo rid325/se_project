@@ -1,0 +1,10 @@
+{
+  "name": "careerpilot-fake-backend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Small fake API for the CareerPilot prototype",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}

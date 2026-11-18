@@ -16,6 +16,7 @@ const state = {
     goal: "Build strong frontend fundamentals, land a product engineering internship, and improve my interview confidence.",
   },
   resumeAnalyzed: false,
+  resumeAnalyzing: false,
   resumeFileName: "",
   resumeProfileKey: "frontend",
   chatReplies: {
@@ -188,7 +189,22 @@ function syncProfileShell() { const p = state.profile; const fullName = `${p.fir
 function readProfileForm() { const values = {}; document.querySelectorAll("[data-profile-field]").forEach(field => { values[field.dataset.profileField] = field.value.trim(); }); return values; }
 function saveProfile() { const values = readProfileForm(); if (!values.firstName || !values.lastName || !values.role) return toast("Add your name and target role before saving."); state.profile = { ...state.profile, ...values }; syncProfileShell(); render(); toast("Profile saved. Your plan will use these updated details."); }
 function applyResumeSuggestion(button) { button.textContent = "Applied ✓"; button.disabled = true; button.closest(".suggestion-item")?.classList.add("applied"); toast("Suggestion applied to the mock resume."); }
-function analyzeResumeFile(fileName) { state.resumeFileName = fileName; state.resumeProfileKey = /analyst|data|riya|mehta/i.test(fileName) ? "analyst" : "frontend"; state.resumeAnalyzed = true; render(); toast(`${fileName} uploaded. The matching demo analysis is ready.`); }
+async function analyzeResumeFile(fileName) {
+  state.resumeFileName = fileName;
+  state.resumeAnalyzing = true;
+  render();
+  try {
+    const response = await fetch("/api/resume/analyze", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ fileName }) });
+    const result = await response.json();
+    if (response.ok && result.profileKey) state.resumeProfileKey = result.profileKey;
+  } catch (error) {
+    state.resumeProfileKey = /analyst|data|riya|mehta/i.test(fileName) ? "analyst" : "frontend";
+  }
+  state.resumeAnalyzing = false;
+  state.resumeAnalyzed = true;
+  render();
+  toast(`${fileName} uploaded. The matching demo analysis is ready.`);
+}
 
 function handleAction(e) {
   const action = e.currentTarget.dataset.action;
