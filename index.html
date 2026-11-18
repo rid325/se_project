@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="CareerPilot - an AI-assisted placement preparation prototype." />
+    <title>CareerPilot — Placement prep, made personal</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar">
+        <div class="brand-lockup">
+          <div class="brand-mark">C<span>·</span>P</div>
+          <div>
+            <div class="brand-name">CareerPilot</div>
+            <div class="brand-caption">PLACEMENT OS</div>
+          </div>
+        </div>
+
+        <div class="profile-mini">
+          <div class="avatar avatar-lavender">AS</div>
+          <div class="profile-mini-copy">
+            <strong>Aarav Sharma</strong>
+            <span>Final year · CSE</span>
+          </div>
+          <button class="icon-btn muted" aria-label="Open profile menu" data-action="profile-menu">•••</button>
+        </div>
+
+        <nav class="primary-nav" aria-label="Primary navigation">
+          <div class="nav-label">Workspace</div>
+          <button class="nav-item active" data-view="overview"><span class="nav-icon">⌂</span><span>Overview</span></button>
+          <button class="nav-item" data-view="plan"><span class="nav-icon">◒</span><span>Preparation plan</span><span class="nav-count">6</span></button>
+          <button class="nav-item" data-view="practice"><span class="nav-icon">⌁</span><span>Practice arena</span></button>
+          <button class="nav-item" data-view="interview"><span class="nav-icon">◌</span><span>Mock interviews</span><span class="nav-dot"></span></button>
+
+          <div class="nav-label nav-label-spaced">Career toolkit</div>
+          <button class="nav-item" data-view="resume"><span class="nav-icon">▤</span><span>Resume coach</span></button>
+          <button class="nav-item" data-view="progress"><span class="nav-icon">↗</span><span>Progress insights</span></button>
+          <button class="nav-item" data-view="profile"><span class="nav-icon">◎</span><span>My profile</span></button>
+        </nav>
+
+        <div class="sidebar-bottom">
+          <div class="upgrade-card">
+            <div class="upgrade-orb">✦</div>
+            <div>
+              <strong>Unlock your edge</strong>
+              <span>Get role-specific insights</span>
+            </div>
+            <button class="text-link" data-action="toast" data-message="Your CareerPilot Plus preview is coming soon.">Explore <span>↗</span></button>
+          </div>
+          <div class="sidebar-footer"><span class="status-pulse"></span> AI services operational <span class="footer-version">v0.9 prototype</span></div>
+        </div>
+      </aside>
+
+      <main class="main-area">
+        <header class="topbar">
+          <button class="mobile-menu icon-btn" aria-label="Toggle menu" data-action="toggle-sidebar">☰</button>
+          <div class="breadcrumb"><span>Workspace</span><span class="breadcrumb-chevron">/</span><strong id="breadcrumb-label">Overview</strong></div>
+          <div class="topbar-actions">
+            <button class="search-pill" data-action="focus-search"><span class="search-icon">⌕</span><span>Search anything</span><kbd>⌘ K</kbd></button>
+            <button class="icon-btn notification-btn" aria-label="Notifications" data-action="notifications"><span>♧</span><i></i></button>
+            <div class="top-avatar avatar avatar-lavender">AS</div>
+          </div>
+          <div class="notification-popover" id="notification-popover">
+            <div class="popover-heading"><strong>Notifications</strong><span>2 new</span></div>
+            <div class="notification-item"><span class="notification-icon green">✓</span><div><strong>Plan task completed</strong><span>Arrays warm-up was marked done.</span></div></div>
+            <div class="notification-item"><span class="notification-icon violet">✦</span><div><strong>New role insight</strong><span>3 focus areas for frontend roles.</span></div></div>
+            <button class="text-link" data-action="toast" data-message="All notifications are marked as read.">Mark all as read</button>
+          </div>
+        </header>
+
+        <div class="content-wrap" id="app-content"></div>
+      </main>
+    </div>
+
+    <div class="toast-stack" id="toast-stack" aria-live="polite"></div>
+
+    <button class="chat-launcher" id="chat-launcher" data-action="chat-toggle" aria-label="Open CareerPilot assistant">
+      <span class="chat-launcher-spark">✦</span>
+      <span class="chat-launcher-label">Ask Pilot</span>
+      <span class="chat-launcher-badge">AI</span>
+    </button>
+
+    <aside class="chat-panel" id="chat-panel" aria-label="CareerPilot assistant">
+      <div class="chat-header">
+        <div class="chat-title"><div class="assistant-avatar">✦</div><div><strong>Pilot assistant</strong><span><i></i> Ready to help</span></div></div>
+        <button class="icon-btn" data-action="chat-toggle" aria-label="Close assistant">×</button>
+      </div>
+      <div class="chat-context"><span class="context-pulse"></span> Context: <strong>Frontend Developer prep</strong></div>
+      <div class="chat-messages" id="chat-messages">
+        <div class="message-row assistant"><div class="message-avatar">✦</div><div class="message-bubble">Hey Aarav! I’m your placement prep co-pilot. What would you like to work on today?</div></div>
+        <div class="quick-prompts"><button data-demo-index="0">What should I do next?</button><button data-demo-index="1">Why are graphs a priority?</button><button data-demo-index="2">How do I prep for interviews?</button></div>
+      </div>
+      <form class="chat-composer" id="chat-form"><input id="chat-input" type="text" autocomplete="off" placeholder="Ask about your preparation..." /><button type="submit" aria-label="Send message">↑</button></form>
+      <div class="chat-disclaimer">Pilot uses placeholder responses in this prototype.</div>
+    </aside>
+
+    <div class="modal-backdrop" id="modal-backdrop">
+      <div class="modal" id="modal"></div>
+    </div>
+    <script src="app.js?v=3"></script>
+  </body>
+</html>
